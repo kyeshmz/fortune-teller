@@ -1,29 +1,24 @@
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { Suspense, useEffect } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { WindupChildren } from 'windups'
 import { Fire } from './Fire'
 
 function App(): JSX.Element {
-  const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
-
+  const [text, setText] = useState<string | null>(null)
   useEffect(() => {
     window.electron.ipcRenderer.on('fortune', (event, arg) => {
-      console.log('Received fortune event:', event)
+      // console.log('Received fortune event:', event)
       console.log('fortune message:', arg)
+      setText(arg)
     })
-    window.electron.ipcRenderer.on('message', (event, arg) => {
-      console.log('Received fortune event:', event)
-      console.log('fortune message:', arg)
-    })
-    console.log('aaaaaaaa')
   }, [])
 
   return (
     <div className="w-full h-full bg-black">
-      <div className="w-full flex items-center justify-center pt-12">
+      <div className="w-full flex items-center justify-center pt-16">
         <WindupChildren>
-          <p className="text-white text-8xl">hello!!!!!!1</p>
+          <p className="text-white text-8xl break-words">{text}</p>
         </WindupChildren>
       </div>
 

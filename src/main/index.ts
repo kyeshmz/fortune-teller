@@ -18,12 +18,12 @@ function createWindow(): void {
     const address = (msg as Array<string>).at(0)
     const message = (msg as Array<string>).at(1)
     console.log('message', message)
-
+    // mainWindow.webContents.send('fortune', 1)
     if (address === '/fortune') {
       console.log('emitting')
       console.log('emitting fortune event with message:', message)
 
-      mainWindow.webContents.send('fortune', 1)
+      mainWindow.webContents.send('fortune', 'bbbbbb')
       ipcMain.emit('fortune', message)
       ipcMain.emit('message', 'aaaa')
     }
@@ -34,8 +34,10 @@ function createWindow(): void {
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 900,
+    width: 1440,
     height: 670,
+    fullscreen: true,
+
     show: false,
     autoHideMenuBar: true,
 
@@ -46,8 +48,9 @@ function createWindow(): void {
       nodeIntegration: true
     }
   })
+  mainWindow.setPosition(1920, 1080)
 
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
