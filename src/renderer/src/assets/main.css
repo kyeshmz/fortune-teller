@@ -1,0 +1,17 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+@font-face {
+    font-family: 'Soulside Betrayed';
+    src: url('/FtVortex-G3ZDy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+  body {
+    font-family: 'Soulside Betrayed', sans-serif;
+  }
+  
